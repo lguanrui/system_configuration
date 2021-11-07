@@ -142,6 +142,8 @@ source /home/guanrui/arpl_ws/devel/setup.bash
 #source /home/guanrui/fast_sim_ws/devel/setup.bash
 
 alias cmr='catkin build'
+alias ckm='catkin_make'
+alias ckc='catkin clean'
 
 alias dgf1='ssh dragonfly1@dragonfly1'
 alias dgf2='ssh dragonfly2@dragonfly2'
@@ -181,6 +183,20 @@ alias GoInTrashFolder='cd /home/guanrui/.local/share/Trash/files'
 alias syncnote='ruby /home/guanrui/Application/drivesync/drivesync.rb'
 alias obsidian='cd /home/guanrui/Application/ && ./Obsidian-0.12.15.AppImage'
 alias qgroundcontrol='cd /home/guanrui/Application/ && ./QGroundControl.AppImage'
+
+alias kill_ros=killall_ros_func 
+alias kill_gazebo=killall_gazebo_func 
+ 
+function killall_ros_func() 
+{ 
+            kill -9 $(ps aux | grep ros | awk '{print $2}') 
+} 
+ 
+function killall_gazebo_func() 
+    { 
+            kill -9 $(ps aux | grep gazebo | awk '{print $2}'); 
+            kill -9 $(ps aux | grep gz | awk '{print $2}') 
+    }
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
