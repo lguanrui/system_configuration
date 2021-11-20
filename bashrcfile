@@ -115,25 +115,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#export ROS_MASTER_URI=http://dragonfly1:11311
-#export ROS_MASTER_URI=http://dragonfly2:11311
-#export ROS_MASTER_URI=http://dragonfly3:11311
-#export ROS_MASTER_URI=http://dragonfly4:11311
-#export ROS_MASTER_URI=http://dragonfly5:11311
-#export ROS_MASTER_URI=http://dragonfly6:11311
-#export ROS_MASTER_URI=http://dragonfly7:11311
-#export ROS_MASTER_URI=http://dragonfly8:11311
-#export ROS_MASTER_URI=http://dragonfly9:11311
-#export ROS_MASTER_URI=http://dragonfly12:11311
-#export ROS_MASTER_URI=http://dragonfly17:11311
-export ROS_MASTER_URI=http://race1:11311
-#export ROS_MASTER_URI=http://128.238.39.147:11311
-#export ROS_MASTER_URI=http://128.238.38.91:11311
-#export ROS_MASTER_URI=http://128.238.38.94:11311
-#export ROS_MASTER_URI=http://128.238.38.155:11311
-#export ROS_MASTER_URI=http://128.238.38.156:11311
-#export ROS_MASTER_URI=http://128.238.38.92:11311
-#export ROS_MASTER_URI=http://localhost:11311
+dgf(){
+  ssh "dragonfly$1@dragonfly$1"
+}
+
+rosexporturi(){
+  export "ROS_MASTER_URI=http://$1:11311"
+}
+
+export ROS_MASTER_URI=http://localhost:11311
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/home/guanrui/arpl_ws/src/acados/lib"
 export ACADOS_SOURCE_DIR="/home/guanrui/arpl_ws/src/acados/"
 
@@ -143,15 +133,6 @@ source /home/guanrui/arpl_ws/devel/setup.bash
 
 alias cmr='catkin build'
 
-alias dgf1='ssh dragonfly1@dragonfly1'
-alias dgf2='ssh dragonfly2@dragonfly2'
-alias dgf3='ssh dragonfly3@dragonfly3'
-alias dgf4='ssh dragonfly4@dragonfly4'
-alias dgf5='ssh dragonfly5@dragonfly5'
-alias dgf6='ssh dragonfly6@dragonfly6'
-alias dgf7='ssh dragonfly7@dragonfly7'
-alias dgf8='ssh dragonfly8@dragonfly8'
-alias dgf9='ssh dragonfly9@dragonfly9'
 alias dgfpro1='ssh root@128.238.38.155'
 alias dgfpro2='ssh root@128.238.38.94'
 alias dgfpro3='ssh root@128.238.38.156'
@@ -161,7 +142,6 @@ alias race1='ssh race1@race1'
 alias arplgpu1='ssh lguanrui@128.238.38.88'
 
 alias sshkeyrm='ssh-keygen -f "/home/guanrui/.ssh/known_hosts" -R'
-
 alias sshnyuhpc='ssh gl1871@prince.hpc.nyu.edu'
 
 alias calibrate_hires_camera='rosrun camera_calibration cameracalibrator.py --size 10x7 --square 0.036 image:=/hires/image_raw camera:=/hires'
